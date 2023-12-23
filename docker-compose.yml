@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  apache_1:
+        container_name: apache_1
+        build: ./server1
+        ports: 
+          - 6060:80
+  apache_2:
+        container_name: apache_2
+        build: ./server2
+        ports:
+          - 7070:80
+        deploy:
+          resources:
+            limits:
+              cpus: "1"
+              memory: 512M
+            reservations:
+              cpus: "0.5"
+              memory: 256M
+  haproxy:
+      container_name: haproxy
+      build: ./HAProxy
+      ports:
+        - 80:80
