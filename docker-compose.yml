@@ -5,6 +5,14 @@ services:
         build: ./server1
         ports: 
           - 6060:80
+        deploy:
+          resources:
+            limits:
+              cpus: "1"
+              memory: 512M
+            reservations:
+              cpus: "0.5"
+              memory: 256M
   apache_2:
         container_name: apache_2
         build: ./server2
